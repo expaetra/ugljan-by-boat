@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..800;1,14..32,400..800&family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:wght@500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-foam: #F7F7F7;   /* Seasalt - page background */
+  --color-ink: #36454F;    /* Charcoal - body text */
+  --color-sea: #000F89;    /* Phtalo blue - primary, buttons, links */
+  --color-deep: #000A5C;   /* darkened phtalo - hovers, video overlay */
+  --color-sky: #45B1E8;    /* Picton - bright accent */
+  --color-mist: #AFDBF5;   /* Uranian - soft fills, borders */
+  --color-sun: #45B1E8;    /* accent alias so existing hero code just works */
+  --color-wine: #722F37;   /* Wine - rare, special moments only */
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-brand: "Playfair Display", Georgia, serif;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+@keyframes rock {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+.animate-rock { animation: rock 3s ease-in-out infinite; transform-origin: bottom center; }

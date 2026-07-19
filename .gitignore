@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+# Node / build
+node_modules/
+dist/
+# Secrets & env
+.env
+# Notebooks
+.ipynb_checkpoints/

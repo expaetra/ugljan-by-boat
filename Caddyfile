@@ -1,0 +1,4 @@
+ugljanbyboat.com, www.ugljanbyboat.com {
+    reverse_proxy web:80
+    encode gzip
+}
