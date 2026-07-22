@@ -9,6 +9,7 @@ import ExcursionsPage from './pages/excursions/ExcursionsPage.jsx'
 import ScrollToTop from './components/shared/ScrollToTop.jsx'
 import NotFound from './pages/NotFound.jsx'
 import PrivacyPage from './pages/PrivacyPage.jsx'
+import ThankYou from './pages/contact/ThankYou.jsx'
 
 export default function App() {
   return (
@@ -16,14 +17,15 @@ export default function App() {
       <ScrollToTop />
       <Navbar />
       <main className="flex-1">
-        <Routes>
+     <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/rent" element={<RentPage />} />
           <Route path="/taxi" element={<TaxiPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/excursions" element={<ExcursionsPage />} />
-          <Route path="*" element={<NotFound />} />
           <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

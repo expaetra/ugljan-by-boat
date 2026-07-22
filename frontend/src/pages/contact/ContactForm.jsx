@@ -1,12 +1,13 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { site } from '../../lib/siteConfig.js'
-import ThankYou from './ThankYou.jsx'
 
 const field = 'w-full border border-mist rounded-lg px-4 py-3 bg-white focus:outline-none focus:border-sea focus:ring-1 focus:ring-sea transition-colors'
 const label = 'block text-sm font-semibold text-ink/70 mb-1.5'
 
 export default function ContactForm() {
-  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+  const [status, setStatus] = useState('idle') // idle | sending | error
+  const navigate = useNavigate()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -19,15 +20,11 @@ export default function ContactForm() {
         body: data,
       })
       if (!res.ok) throw new Error('failed')
-      setStatus('sent')
       e.target.reset()
+      navigate('/thank-you')
     } catch {
       setStatus('error')
     }
-  }
-
- if (status === 'sent') {
-    return <ThankYou />
   }
 
   return (
@@ -64,7 +61,7 @@ export default function ContactForm() {
         <div className="grid sm:grid-cols-2 gap-5">
           <div>
             <label className={label} htmlFor="name">Your name</label>
-                        <input id="name" name="name" required placeholder="Ivan Horvat" className={field} />
+            <input id="name" name="name" required placeholder="Ivan Horvat" className={field} />
           </div>
           <div>
             <label className={label} htmlFor="phone">Phone / WhatsApp</label>
