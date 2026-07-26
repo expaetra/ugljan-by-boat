@@ -85,7 +85,7 @@ function validate(values) {
   }
 
   if (!EMAIL_RE.test(values.email)) {
-    errors.email = 'Enter a valid email address, e.g. ivan@example.com.'
+    errors.email = 'Enter a valid email address, e.g. name@example.com.'
   }
 
   const digits = values.phone.replace(/\D/g, '')
@@ -273,7 +273,7 @@ export default function ContactForm() {
               type="email"
               required
               maxLength={LIMITS.email}
-              placeholder="ivan@example.com"
+              placeholder="name@example.com"
               autoComplete="email"
               className={fieldClass('email')}
               aria-invalid={!!errors.email}
