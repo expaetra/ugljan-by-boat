@@ -2,3 +2,6 @@ ugljanbyboat.com, www.ugljanbyboat.com {
     reverse_proxy web:80
     encode gzip
 }
+data.ugljanbyboat.com {
+	reverse_proxy umami-umami-1:3000
+}

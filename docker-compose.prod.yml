@@ -2,7 +2,6 @@ services:
   web:
     build: ./frontend
     restart: unless-stopped
-
   caddy:
     image: caddy:2
     restart: unless-stopped
@@ -15,7 +14,13 @@ services:
       - caddy_config:/config
     depends_on:
       - web
-
+    networks:
+      - default
+      - umami
 volumes:
   caddy_data:
   caddy_config:
+networks:
+  umami:
+    external: true
+    name: umami_default
