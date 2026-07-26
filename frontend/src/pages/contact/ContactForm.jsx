@@ -23,9 +23,11 @@ const SERVICES = [
   'Just a question',
 ]
 
+const QUESTION = 'Just a question'
+
 const MAX_PEOPLE = 8
 const SEND_TIMEOUT_MS = 15000
-const MIN_FILL_MS = 3000 
+const MIN_FILL_MS = 3000
 
 function clean(value, max) {
   return String(value ?? '')
@@ -64,8 +66,9 @@ function validate(values) {
     errors.service = 'Choose one of the listed options.'
   }
 
+  const dateOptional = values.service === QUESTION
   if (!values.date) {
-    errors.date = 'Pick a date.'
+    if (!dateOptional) errors.date = 'Pick a date.'
   } else if (!/^\d{4}-\d{2}-\d{2}$/.test(values.date) || Number.isNaN(Date.parse(values.date))) {
     errors.date = 'That date is not valid.'
   } else if (values.date < localToday()) {
@@ -94,8 +97,10 @@ function validate(values) {
 }
 
 export default function ContactForm() {
-  const [status, setStatus] = useState('idle') 
+  const [status, setStatus] = useState('idle')
   const [errors, setErrors] = useState({})
+  const [service, setService] = useState(SERVICES[0])
+  const isQuestion = service === QUESTION
   const navigate = useNavigate()
   const openedAt = useRef(Date.now())
   const today = localToday()
@@ -106,11 +111,6 @@ export default function ContactForm() {
 
     const form = e.target
     const raw = new FormData(form)
-
-    if (raw.get('_honey') || Date.now() - openedAt.current < MIN_FILL_MS) {
-      navigate('/thank-you')
-      return
-    }
 
     const values = {
       service: clean(raw.get('service'), 60),
@@ -129,13 +129,18 @@ export default function ContactForm() {
       return
     }
 
+    if (raw.get('_honey') || Date.now() - openedAt.current < MIN_FILL_MS) {
+      navigate('/thank-you')
+      return
+    }
+
     setStatus('sending')
 
     const payload = new FormData()
     payload.set('_subject', 'Booking request - ugljanbyboat.com')
     payload.set('_template', 'table')
     payload.set('service', values.service)
-    payload.set('date', toDisplayDate(values.date))
+    if (values.date) payload.set('date', toDisplayDate(values.date))
     payload.set('people', values.people)
     payload.set('name', values.name)
     payload.set('email', values.email)
@@ -189,6 +194,13 @@ export default function ContactForm() {
             id="service"
             name="service"
             required
+            value={service}
+            onChange={(e) => {
+              setService(e.target.value)
+              if (e.target.value === QUESTION) {
+                setErrors((prev) => ({ ...prev, date: undefined }))
+              }
+            }}
             className={fieldClass('service')}
             aria-invalid={!!errors.service}
             aria-describedby={errors.service ? 'service-error' : undefined}
@@ -202,13 +214,15 @@ export default function ContactForm() {
 
         <div className="grid sm:grid-cols-2 gap-5">
           <div>
-            <label className={label} htmlFor="date">Date</label>
+            <label className={label} htmlFor="date">
+              Date {isQuestion && <span className="font-normal text-ink/40">(optional)</span>}
+            </label>
             <input
               id="date"
               name="date"
               type="date"
               min={today}
-              required
+              required={!isQuestion}
               className={fieldClass('date')}
               aria-invalid={!!errors.date}
               aria-describedby={errors.date ? 'date-error' : undefined}
