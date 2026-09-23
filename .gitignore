@@ -11,3 +11,4 @@ dist/
 .env
 # Notebooks
 .ipynb_checkpoints/
+frontend/dist/
