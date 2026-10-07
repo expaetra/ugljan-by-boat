@@ -2,7 +2,7 @@
 
 **Live site: [ugljanbyboat.com](https://ugljanbyboat.com)**
 
-A booking site for a boat rental and tours business on the island of Ugljan, in the Zadar archipelago, Croatia. Built as paid client work, live since July 2026, and bringing in real bookings through phone, WhatsApp, Viber and the contact form.
+A booking site for a boat rental and tours business on the island of Ugljan, in the Zadar archipelago, Croatia. Built as paid client work. The site has served the business since 2025; this React version replaced the original WordPress build in July 2026, cutting hosting costs by ~60%. It brings in bookings through phone, WhatsApp, Viber and the contact form.
 
 <img width="1270" height="600" alt="website-screenshot-ubb" src="https://github.com/user-attachments/assets/7116addf-cef6-4e23-92d1-19383cebe0ef" />
 
