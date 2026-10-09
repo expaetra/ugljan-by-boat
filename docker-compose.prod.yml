@@ -12,11 +12,16 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
+      - /opt/portfolio:/srv/portfolio:ro
+      - /opt/classifier/frontend_dist:/srv/classifier:ro
+      - /opt/classifier/frontend_dist:/srv/classifier:ro
+      - /opt/tourism:/srv/tourism:ro
     depends_on:
       - web
     networks:
       - default
       - umami
+      - classifier
 volumes:
   caddy_data:
   caddy_config:
@@ -24,3 +29,6 @@ networks:
   umami:
     external: true
     name: umami_default
+  classifier:
+    external: true
+    name: classifier_default

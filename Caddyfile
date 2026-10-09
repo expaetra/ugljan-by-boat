@@ -5,3 +5,32 @@ ugljanbyboat.com, www.ugljanbyboat.com {
 data.ugljanbyboat.com {
 	reverse_proxy umami-umami-1:3000
 }
+
+ivas.is, www.ivas.is {
+    encode gzip
+    root * /srv/portfolio
+    file_server
+}
+
+classifier.ivas.is {
+    encode gzip
+    request_body {
+        max_size 15MB
+    }
+    handle_path /api/* {
+        reverse_proxy classifier-api:8000
+    }
+    handle {
+        root * /srv/classifier
+        file_server
+    }
+}
+tourism.ivas.is {
+    encode gzip
+    root * /srv/tourism
+    file_server
+}
+
+analytics.ivas.is {
+    reverse_proxy umami-umami-1:3000
+}
