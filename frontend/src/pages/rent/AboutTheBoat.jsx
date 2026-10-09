@@ -1,11 +1,11 @@
 import HoverGallery from '../../components/shared/HoverGallery.jsx'
 import boatFront from '../../assets/boat/boat_front.webp'
 import boatAbove from '../../assets/boat/boat_above.webp'
-import birdeye from '../../assets/boat/baot_birdeye.webp'
+import birdeye from '../../assets/boat/boat_birdeye.webp'
 import boardNav from '../../assets/boat/board_nav.webp'
 import seatBack from '../../assets/boat/seat_back.webp'
 import boatRide from '../../assets/boat/boat_ride.webp'
-import boatSlow from '../../assets/boat/baot_slow.webp'
+import boatSlow from '../../assets/boat/boat_slow.webp'
 import boatNight from '../../assets/boat/boat_night.webp'
 
 const photos = [
